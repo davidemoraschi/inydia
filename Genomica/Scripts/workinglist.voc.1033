@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<words>
+	<word key='REVISION' value='15'/>
+	<word key='RUNIDTITLE' value='Run ID'/>
+	<word key='DATETIMETITLE' value='Date and time'/>
+	<word key='POSITION' value='Pos.'/>
+	<word key='ASSAYID' value='Assay ID'/>
+	<word key='ASSAYTITLE' value='Assay'/>
+	<word key='CHIPID' value='Array ID'/>
+	<word key='WELLID' value='Well nr'/>
+	<word key='TESTREF' value='Sample reference'/>
+	<word key='RESULT' value='Result'/>
+	<word key='40204TITLE' value='&lt;nobr&gt;CLART HPV&lt;/nobr&gt;'/>
+	<word key='40207TITLE' value='&lt;nobr&gt;CLART HPV2 MM 7&lt;/nobr&gt;'/>
+	<word key='40208TITLE' value='&lt;nobr&gt;CLART HPV2 8&lt;/nobr&gt;'/>
+	<word key='50208TITLE' value='&lt;nobr&gt;CLART HPV2 8&lt;/nobr&gt;'/>
+	<word key='40507TITLE' value='Pneumovir07'/>
+	<word key='40508TITLE' value='Pneumovir'/>
+	<word key='40510TITLE' value='&lt;nobr&gt;CLART PNEUMOVIR 10&lt;nobr&gt;'/>
+	<word key='40511TITLE' value='&lt;nobr&gt;CLART PNEUMOVIR 11&lt;nobr&gt;'/>
+	<word key='40512TITLE' value='&lt;nobr&gt;CLART PNEUMOVIR 12&lt;nobr&gt;'/>
+	<word key='40513TITLE' value='&lt;nobr&gt;CLART PNEUMOVIR 13&lt;nobr&gt;'/>
+	<word key='40514TITLE' value='&lt;nobr&gt;CLART PNEUMOVIR 14&lt;nobr&gt;'/>
+	<word key='40515TITLE' value='&lt;nobr&gt;CLART FluAVir&lt;nobr&gt;'/>
+	<word key='50515TITLE' value='&lt;nobr&gt;CLART FluAVir&lt;nobr&gt;'/>
+	<word key='40602TITLE' value='&lt;nobr&gt;CLART ENTHERPEX 02&lt;/nobr&gt;'/>
+	<word key='40603TITLE' value='&lt;nobr&gt;CLART ENTHERPEX 03&lt;/nobr&gt;'/>
+	<word key='40604TITLE' value='&lt;nobr&gt;CLART ENTHERPEX 04&lt;/nobr&gt;'/>
+	<word key='40605TITLE' value='&lt;nobr&gt;CLART ENTHERPEX 05&lt;/nobr&gt;'/>
+	<word key='40606TITLE' value='&lt;nobr&gt;CLART ENTHERPEX 06&lt;/nobr&gt;'/>
+	<word key='40607TITLE' value='&lt;nobr&gt;CLART ENTHERPEX 7&lt;/nobr&gt;'/>
+	<word key='40608TITLE' value='&lt;nobr&gt;CLART ENTHERPEX 8&lt;/nobr&gt;'/>
+	<word key='40304TITLE' value='&lt;nobr&gt;CLART METABONE 4&lt;/nobr&gt;'/>
+	<word key='TITLE' value='Working list'/>
+	<word key='EXPORTOK' value=''/>
+	<word key='EXPORTFAILURE' value='Error at exporting results!! Please contact service support.'/>
+	<word key='WRKINTERNALERROR' value="&lt;h1&gt;Internal error&lt;/h1&gt;"/>
+	<word key='TYPEERROR' value="&lt;h1&gt;Internal error&lt;/h1&gt;&lt;br&gt;&lt;br&gt;Please check that sample references do not contain commas (,), single quotes ('), double quotes (&quot;) or backslashes (\). &lt;br&gt;&lt;br&gt; Otherwise, please contact your service support.&lt;br&gt;&lt;br&gt;Press Back and try again."/>
+	<word key='ASSAYNOTFOUND' value="&lt;h1&gt;Internal error&lt;/h1&gt;&lt;br&gt;&lt;br&gt;The selected assays are not installed in the device.&lt;br&gt;&lt;br&gt;Please contact service support for further information."/>
+</words>

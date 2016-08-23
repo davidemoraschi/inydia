@@ -1,0 +1,18 @@
+C:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\INyDIA Center.dll
+C:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\INyDIA Center.pdb
+C:\My Dropbox\SOURCES\inydia\INyDIA Center\obj\Debug\ResolveAssemblyReference.cache
+C:\My Dropbox\SOURCES\inydia\INyDIA Center\obj\Debug\INyDIA Center.dll
+C:\My Dropbox\SOURCES\inydia\INyDIA Center\obj\Debug\INyDIA Center.pdb
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\Hilite.htc
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\Hilite.js
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\images\background.jpg
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\images\navbutton.gif
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\images\navbutton_hilite.gif
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\INyDIA_Center.css
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\INyDIA_Center.hta
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\MoveFocus.js
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\INyDIA_Center.hta.dll
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\bin\INyDIA_Center.hta.pdb
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\obj\Debug\ResolveAssemblyReference.cache
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\obj\Debug\INyDIA_Center.hta.dll
+D:\My Dropbox\SOURCES\inydia\INyDIA Center\obj\Debug\INyDIA_Center.hta.pdb

@@ -1,0 +1,2 @@
+Gris:	(GradientType=0, StartColorStr='#e6e6e6', EndColorStr='#CCCCCC')
+Blue:	(GradientType=1, StartColorStr='#000000', EndColorStr='#0000FF')

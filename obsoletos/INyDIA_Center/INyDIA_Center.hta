@@ -1,0 +1,290 @@
+<html>
+<head>
+<title>INyDIA Center</title>
+<link  href="INyDIA_Center.css" type="text/css" rel="stylesheet" />
+<script src="BasicFunctions.js" type="text/javascript"></script>
+<script src="MoveFocus.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			// Indicates the timeout (in msec) until the next "GetValues"-method is called
+			var nRefreshTimeout = 1000;
+			
+			// called when initalized
+			function Loader()
+			{
+				// the following functions are needed for full media center support
+			    setBGColor("#0B5EBB");
+			    checkSVP();
+			    setArray();
+			    startFocus();			    
+			}
+			
+			function countMyself() {
+			    if ( typeof countMyself.counter == 'undefined' ) {
+			        countMyself.counter = 0;
+			    }
+				var div = document.getElementById("bar");
+				div.style.width=countMyself.counter+"%";
+			    ++countMyself.counter;
+			    var ForReading = 1, ForWriting = 2, ForAppending = 8;
+			    var fso = new ActiveXObject("Scripting.FileSystemObject");
+				var fileName = "C:\\Lirix\\log\\XIRIL_IO01.log";
+				try
+				  {
+				  	// Open the file for input.
+					f = fso.OpenTextFile(fileName, ForReading);					
+					// Read from the file and display the results.
+				    var s = "Start";
+					while (!f.AtEndOfStream)
+					    {
+					    var r = f.ReadLine();
+					    if (r.substring(0,2) == "01")
+					    {
+					    	var s = s + "<br />" + r;
+					    	//alert(r);
+					    }
+					    //document.write (r + "<br />");
+					    }
+					//var t = document.getElementById("visualization4").firstChild.nodeValue;
+					document.getElementById("visualization4").innerHTML = s;
+					f.Close();
+					//alert(txtFile);
+				  }
+				catch(err)
+				  {
+				  switch (err.number)
+					{
+					case -2146828235:
+					  //document.write("Finally Friday");
+					  //break;
+					  break;
+					default:
+					  txt="There was an error on this page.\n\n";
+					  txt+="Error description: " + err.description + "\n\n";
+					  txt+="Error number : " + err.number  + "\n\n";
+					  txt+="Click OK to continue.\n\n";
+					  alert(txt);
+					  throw err;
+					  break;
+					}
+				//  	document.getElementById("clock").firstChild.nodeValue = getClockTime();
+				  }
+				
+			}
+			function getClockTime()
+			{
+			   var now    = new Date();
+			   var hour   = now.getHours();
+			   var minute = now.getMinutes();
+			   var second = now.getSeconds();
+			   var ap = "AM";
+			   if (hour   > 11) { ap = "PM";             }
+			   if (hour   > 12) { hour = hour - 12;      }
+			   if (hour   == 0) { hour = 12;             }
+			   if (hour   < 10) { hour   = "0" + hour;   }
+			   if (minute < 10) { minute = "0" + minute; }
+			   if (second < 10) { second = "0" + second; }
+			   var timeString = hour +
+			                    '_' +
+			                    minute +
+			                    '_' +
+			                    second;
+			   return timeString;
+			} // function getClockTime()
+			function getCalendarDate()
+			{
+			   var months = new Array(13);
+			   months[0]  = "January";
+			   months[1]  = "February";
+			   months[2]  = "March";
+			   months[3]  = "April";
+			   months[4]  = "May";
+			   months[5]  = "June";
+			   months[6]  = "July";
+			   months[7]  = "August";
+			   months[8]  = "September";
+			   months[9]  = "October";
+			   months[10] = "November";
+			   months[11] = "December";
+			   var now         = new Date();
+			   var monthnumber = now.getMonth();
+			   var monthname   = months[monthnumber];
+			   var monthday    = now.getDate();
+			   var year        = now.getYear();
+			   if(year < 2000) { year = year + 1900; }
+			   var dateString = year +
+			                    '_' +
+			                    monthnumber +
+			                    '_' +
+			                    monthday;
+			   return dateString;
+			} // function getCalendarDate()
+
+			function doSelect()
+			{
+				// checks the id of the clicked element, place the eventhandling below
+			    switch(oCurFocus.id)
+			    {
+			    	case "btnLight1Toggle":
+						setInterval("countMyself()",2000);
+						cleanLogs();
+						setTimeout("runMacro()", 2000);
+			    		break;
+			    		
+			    	case "btnLight2Toggle":
+						self.close();
+			    		break;    		
+			    }
+			}
+			
+			function cleanLogs(){
+				var fldName = "C:\\Lirix\\log\\" + getCalendarDate() + getClockTime();
+				//alert(fldName);
+				var fso = new ActiveXObject("Scripting.FileSystemObject");
+				if (! fso.FolderExists(fldName))
+					{ 
+						fso.CreateFolder(fldName); 
+					}
+					//try
+					//  {
+						fso.MoveFile("C:\\Lirix\\log\\*.log" , fldName);
+					//  }
+					//catch(err)
+					//  {}
+			}
+			
+			function runMacro(){
+					var wdApp; // a general variable
+					wdApp = new ActiveXObject("XTool.XToolApplication");
+					//wdApp.ViewLog = true;
+					wdApp.CallSub("C:\\Lirix\\data\\macros\\1011_Davide.bas", "main");
+			}
+</script>
+<HTA:APPLICATION
+  APPLICATIONNAME="INyDIA Center"
+  ID="INyDIA Center"
+  VERSION="0.1.0"
+  INNERBORDER="no"
+  CAPTION="no"
+  SYSMENU="no"
+  MAXIMIZEBUTTON="no"
+  MINIMIZEBUTTON="no"
+  SCROLL="no"
+  SINGLEINSTANCE="yes"
+  WINDOWSTATE="maximize"
+  SHOWINTASKBAR="no"/>
+</head>
+
+<script type="text/vbscript">
+
+Sub Window_OnLoad
+	'This method will be called when the application loads
+	'Add your code here
+	Const EXT_Author = 9
+	Const EXT_Category = 12
+	Const LIRIX_Folder = "C:\Lirix\data\macros"
+	Const LIRIX_Author = "INyDIA"
+	Dim objNewOption
+
+	Set objShell = CreateObject("Shell.Application")
+	Set objFolder = objShell.Namespace(LIRIX_Folder)
+	
+	For Each strFileName in objFolder.Items
+		If objFolder.GetDetailsOf(strFileName, EXT_Author) = LIRIX_Author Then
+    		Set objNewOption = document.createElement("OPTION")
+   			objNewOption.Text = strFileName.Name     			 				 		
+	   		lst_Macros.options.Add(objNewOption)
+	   		lst_Macros.Size = lst_Macros.Size + 1
+   		End If
+	Next
+	
+	Set objNewOption = Nothing
+	Set objFolder = Nothing
+	Set objShell = Nothing
+	
+End Sub
+
+'Sub OnClickButtonbtn_OK()
+  'This method will be called when button "btn_OK" is clicked
+  'Add your code here
+  'MsgBox AppPath
+'  Set XToolApp = CreateObject("XTool.XToolApplication")
+    'XToolApp.ViewModInfo = True
+    'XToolApp.ViewIDE = True
+    'XToolApp.Visible = True
+'    XToolApp.ViewLog = True        'by default don't display log
+'  	Call XtoolApp.CallSub("C:\Lirix\data\macros\" & lst_Macro.Value, "main")
+'End Sub
+
+Sub OnChangeSelectlst_Macros()
+	'This method will be called when select "lst_Macros" is changed
+	'Add your code here
+	Const LIRIX_Folder = "C:\Lirix\data\macros"
+	Dim str_MAC_File, str_IMG_File
+
+	For Each objOption in lst_Macros.Options
+		If objOption.Selected Then
+			str_MAC_File = LIRIX_Folder & "\" & Replace( objOption.InnerText,".bas",".mac")
+		    Exit For
+		End If
+	Next
+
+	Set ff = CreateObject("cuf.FileFunctions")
+	str_IMG_File = "file://C:\Lirix\data\macros\" & ff.GetINIString(str_MAC_File,"General", "ProcessLayout") & ".bmp"
+	img_Layout.src = str_IMG_File
+	Set ff = Nothing
+
+End Sub
+</script>
+
+<body id="body" class="body" MCFocusStart="lst_Macros" onload="Loader()" onkeydown="onRemoteEvent(window.event.keyCode)">
+
+<!--Add your controls here-->
+
+	<table><tr><td><span id="SVP" MCFocusable="true" /></td></tr></table>
+
+	<div id="visualization1" class="small_panel">
+		<span id="headback" class="headback">INyDIA</span>
+		<p>&nbsp;</p>
+		<span id="headfront" class="headfront">Seleccionar un proceso:</span>
+		<select name="lst_Macros" id="lst_Macros" size=0 onchange="OnChangeSelectlst_Macros()"></select>
+		<span id="navmenu" class="navmenu">
+			<table align="center">
+				<tr>
+					<td>
+						<!-- label containing the value of the variable -->
+						<span id="lblLight1Value" class="navlabel" MCFocusable="false"></span>
+						<!-- button for toggling the value -->
+						<span id="btnLight1Toggle" class="navbutton" MCFocusable="true">OK</span>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<!-- label containing the value of the variable -->
+						<span id="lblLight2Value" class="navlabel" MCFocusable="false"></span>
+						<!-- button for toggling the value -->
+						<span id="btnLight2Toggle" class="navbutton" MCFocusable="true">Salir</span>
+					</td>
+				</tr> 
+			</table>		
+		</span>
+	</div>
+
+	<div id="visualization2" class="small_panel">
+		<img name="img_Layout" id="img_Layout" src="file://C:\Lirix\data\macros\Aliquot_X100.bmp" border="1" align="Left"></img>
+	</div>
+
+	<div id="visualization3" class="progr_panel">
+		<span class="chart"><span id="bar" class="bar" style="width:0%"></span></span>
+	</div>
+
+	<div id="visualization4" class="info_panel">
+		log
+	</div>
+
+	<div style="width: 10em; text-align: center; margin: 20px auto;">
+	  <span id="clock">&nbsp;</span>
+	</div>
+
+<!--{{InsertControlsHere}}-Do not remove this line-->
+</body>
+</html>

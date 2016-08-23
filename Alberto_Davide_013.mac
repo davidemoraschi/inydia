@@ -1,0 +1,4 @@
+[General]
+ProcessLayout=TEST
+HardwareLayout=TEST
+Info=Genera report xml + CSS + fecha_hora

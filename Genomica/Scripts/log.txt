@@ -1,0 +1,90 @@
+2010-10-04 14:38:39,322 INFO Empezamos ejecución...
+2010-10-04 14:38:39,322 INFO Empezamos main...
+2010-10-04 14:38:39,322 INFO OutputPath C:\Genomica\Data\Results\2008_3_4_17_58_48_54\
+2010-10-04 14:38:39,322 INFO lang 1033
+2010-10-04 14:38:39,322 INFO RunID Mi Run ID
+2010-10-04 14:38:39,322 INFO Data 1,8,1,A1,12345001040204,Referencia 1,2,B1,12345001040204,Referencia 5,3,C1,12345001040204,Referencia 6,4,D1,12345001040204,Referencia 7,5,E1,12345001040204,Referencia 8,6,F1,12345001040204,Referencia 9,7,G1,12345001040204,Referencia 10,8,H1,12345001040204,Referencia 11
+2010-10-04 14:38:39,322 INFO Leyendo los archivos de idioma C:\Genomica\Data\scripts\workinglist.voc.1033
+2010-10-04 14:38:39,336 INFO 8
+2010-10-04 14:38:39,336 INFO 8.0
+2010-10-04 14:38:39,336 INFO Comprobando que están todos los softwares...
+2010-10-04 14:38:39,336 INFO Están todos
+2010-10-04 14:38:39,336 INFO Leyendo C:\Genomica\Data\scripts\workinglist.tmp.html
+2010-10-04 14:38:39,336 INFO Añadiendo 1 A1 12345001040204 Referencia 1
+2010-10-04 14:38:39,336 INFO Añadiendo 2 B1 12345001040204 Referencia 5
+2010-10-04 14:38:39,336 INFO Añadiendo 3 C1 12345001040204 Referencia 6
+2010-10-04 14:38:39,336 INFO Añadiendo 4 D1 12345001040204 Referencia 7
+2010-10-04 14:38:39,336 INFO Añadiendo 5 E1 12345001040204 Referencia 8
+2010-10-04 14:38:39,336 INFO Añadiendo 6 F1 12345001040204 Referencia 9
+2010-10-04 14:38:39,336 INFO Añadiendo 7 G1 12345001040204 Referencia 10
+2010-10-04 14:38:39,336 INFO Añadiendo 8 H1 12345001040204 Referencia 11
+2010-10-04 14:38:39,352 INFO Guardando C:\Genomica\Data\Results\2008_3_4_17_58_48_54\workinglist.html
+2010-10-04 14:38:39,352 ERROR Sucedio un error en la preparación del informe: 
+Traceback (most recent call last):
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 482, in main
+    Guarda(wlreport, wlready)
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 40, in Guarda
+    output = file(destino,"w")
+
+IOError: [Errno 2] No such file or directory: 'C:\\Genomica\\Data\\Results\\2008_3_4_17_58_48_54\\workinglist.html'
+
+2010-10-04 14:38:39,352 INFO Leyendo C:\Genomica\Data\scripts\workinglist.error.html
+2010-10-04 14:38:39,352 INFO Guardando C:\Genomica\Data\Results\2008_3_4_17_58_48_54\workinglist.html
+2010-10-04 14:38:39,352 INFO Fin del workinglist main. Exit = 0. 
+Traceback (most recent call last):
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 493, in main
+    Guarda(wlreport,Traduce(Remplaza(Lee(wlerror),dic,'')))
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 40, in Guarda
+    output = file(destino,"w")
+
+IOError: [Errno 2] No such file or directory: 'C:\\Genomica\\Data\\Results\\2008_3_4_17_58_48_54\\workinglist.html'
+
+2010-10-04 14:38:43,586 INFO Empezamos ejecución...
+2010-10-04 14:38:43,586 INFO Empezamos main...
+2010-10-04 14:38:43,586 INFO OutputPath C:\Genomica\Data\Results\2008_3_4_17_58_48_54\
+2010-10-04 14:38:43,586 INFO lang 1033
+2010-10-04 14:38:43,586 INFO RunID Mi Run ID
+2010-10-04 14:38:43,586 INFO Data 1,8,1,A1,12345001040204,Referencia 1,2,B1,12345001040204,Referencia 5,3,C1,12345001040204,Referencia 6,4,D1,12345001040204,Referencia 7,5,E1,12345001040204,Referencia 8,6,F1,12345001040204,Referencia 9,7,G1,12345001040204,Referencia 10,8,H1,12345001040204,Referencia 11
+2010-10-04 14:38:43,586 INFO Leyendo los archivos de idioma C:\Genomica\Data\scripts\workinglist.voc.1033
+2010-10-04 14:38:43,602 INFO 8
+2010-10-04 14:38:43,602 INFO 8.0
+2010-10-04 14:38:43,602 INFO Comprobando que están todos los softwares...
+2010-10-04 14:38:43,602 INFO Están todos
+2010-10-04 14:38:43,602 INFO Leyendo C:\Genomica\Data\scripts\workinglist.tmp.html
+2010-10-04 14:38:43,602 INFO Añadiendo 1 A1 12345001040204 Referencia 1
+2010-10-04 14:38:43,602 INFO Añadiendo 2 B1 12345001040204 Referencia 5
+2010-10-04 14:38:43,602 INFO Añadiendo 3 C1 12345001040204 Referencia 6
+2010-10-04 14:38:43,602 INFO Añadiendo 4 D1 12345001040204 Referencia 7
+2010-10-04 14:38:43,602 INFO Añadiendo 5 E1 12345001040204 Referencia 8
+2010-10-04 14:38:43,602 INFO Añadiendo 6 F1 12345001040204 Referencia 9
+2010-10-04 14:38:43,602 INFO Añadiendo 7 G1 12345001040204 Referencia 10
+2010-10-04 14:38:43,602 INFO Añadiendo 8 H1 12345001040204 Referencia 11
+2010-10-04 14:38:43,618 INFO Guardando C:\Genomica\Data\Results\2008_3_4_17_58_48_54\workinglist.html
+2010-10-04 14:38:43,618 ERROR Sucedio un error en la preparación del informe: 
+Traceback (most recent call last):
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 482, in main
+    Guarda(wlreport, wlready)
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 40, in Guarda
+    output = file(destino,"w")
+
+IOError: [Errno 2] No such file or directory: 'C:\\Genomica\\Data\\Results\\2008_3_4_17_58_48_54\\workinglist.html'
+
+2010-10-04 14:38:43,618 INFO Leyendo C:\Genomica\Data\scripts\workinglist.error.html
+2010-10-04 14:38:43,618 INFO Guardando C:\Genomica\Data\Results\2008_3_4_17_58_48_54\workinglist.html
+2010-10-04 14:38:43,618 INFO Fin del workinglist main. Exit = 0. 
+Traceback (most recent call last):
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 493, in main
+    Guarda(wlreport,Traduce(Remplaza(Lee(wlerror),dic,'')))
+
+  File "C:\Genomica\data\Scripts\workinglist.py", line 40, in Guarda
+    output = file(destino,"w")
+
+IOError: [Errno 2] No such file or directory: 'C:\\Genomica\\Data\\Results\\2008_3_4_17_58_48_54\\workinglist.html'
+

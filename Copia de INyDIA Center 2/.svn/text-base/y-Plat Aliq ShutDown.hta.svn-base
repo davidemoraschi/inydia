@@ -1,0 +1,85 @@
+<html>
+<head>
+    <style type="text/css">
+        body
+        {
+            font: 14 pt arial;
+            color: white;
+            background-image: url('images/fondo.jpg');
+        }
+        table
+        {
+            width: 98%; 
+            height: 98%;
+            margin-left: 1%;
+            margin-top: 1%;
+            }
+        input.btn
+        {
+            width: 80%;
+            height: 80%;
+            font: 24px bold 84% 'trebuchet ms' ,helvetica,sans-serif;
+            border: 1px solid;
+            filter: progid:DXImageTransform.Microsoft.Gradient (GradientType=0,StartColorStr= '#e6e6e6' ,EndColorStr= '#CCCCCC' );
+        }
+        .BottomBar
+        {
+        	z-index: 2; position: absolute; 
+        	right: 0px; bottom: 0px; 
+        	width: 30%; height: 4%; 
+        	background-image:url(images/fondoverde.png);"
+        }
+    </style>
+    <title>y-Plat Aliq</title>
+    <hta:application applicationname="y-Plat Aliq" id="y-Plat Aliq" version="1.0" caption="no"
+        icon="y-Plat Aliq.ico" scroll="no" scrollflat="yes" singleinstance="yes" windowstate="maximize"
+        navigable="yes" />
+<script language='vbscript'>
+
+Sub Shutdown
+    Set objSystemSet = GetObject("winmgmts:{impersonationLevel=impersonate,(Shutdown )}")_
+        .InstancesOf("Win32_OperatingSystem")
+    For Each objSystem In objSystemSet
+        objSystem.Win32Shutdown 5
+    Next
+End Sub
+
+Sub CancelA
+    Set WshShell = CreateObject("WScript.Shell")
+    location.href="y-Plat Aliq MainForm.hta"
+    'Window.Close
+End Sub
+
+</script>
+</head>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+    function test() {
+        document.all.howMany.innerText = parseInt(15);
+        setTimeout('countDown()', 1000);
+    }
+    function countDown() {
+        var el = document.all.howMany
+        el.innerText--
+        if (0 <= el.innerText)
+            setTimeout("countDown()", 1000)
+        else {
+            // Call Shutdown
+            Shutdown();
+        }
+    }
+
+</SCRIPT>
+
+<body onLoad=test()>
+    <div>
+    <table border="0">
+    <tr><td align="center" style="height: 30%;"><h2>Este ordenador se apagará en pocos segundos, haga clic sobre Cancelar para seguir trabajando</h2></td></tr>
+    <tr><td align="center"><input type="button" class="btn" value="Cancelar" name="Cancelar" onclick="CancelA"></td></tr>
+    <tr><td align="center" style="height: 30%;"><h2>Faltan <SPAN ID="howMany"><EM>n</EM></SPAN>&nbsp;segundos.</h2></td></tr>
+    </table>
+    </div>
+	<div name="INyDIA_BottomBar" class="BottomBar">&nbsp;</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<words>
+	<word key='searchingDlg.title' value="Búsqueda de tests"/>
+	<word key='search.done' value="Búsqueda completada"/>
+	<word key='search.failed' value="La búsqueda falló"/>
+	<word key='search.aborted' value="La búsqueda se canceló"/>
+	<word key='searching' value="Buscando tests, espere por favor..."/>
+	<word key='search.didnotfound' value="No se encontró ningún test"/>
+
+	<word key='tests.not.exported' value="Los siguientes tests no pudieron ser exportados: "/>
+	<word key='tests.not.exported.caption' value="Error en la exportación"/>
+	<word key='error.at.export.ref' value="Error al exportar la referencia "/>
+
+	<word key='param_processingstart' value="Fecha"/>
+	<word key='param_assayid' value="Ensayo"/>
+	<word key='param_testref' value="Referencia"/>
+	<word key='param_devicename' value="Lector"/>
+	<word key='param_deviceserial' value="Run"/>
+	<word key='param_testid' value="Test ID"/>
+	<word key='select.title' value="Genomica LIMS"/>
+	<word key='select.message' value="Selecciona los tests para exportar al LIMS"/>
+	<word key='search.folder' value="Especifica la carpeta donde están los ensayos"/>
+	<word key='btn.selectall' value='Seleccionar todos'/>
+	<word key='btn.clean' value='Eliminar selección'/>
+	<word key='btn.save' value='Enviar'/>
+	<word key='btn.close' value='Cerrar'/>
+	<word key='btn.accept' value='Ok'/>
+	<word key='btn.cancel' value='Cancelar'/>
+	<word key='export' value='Asistente de conexión a LIMS'/>
+	<word key='export_ok' value='Todos los ensayos se recibieron satisfactoriamente'/>
+	<word key='export_no' value='Los siguientes ensayos no pudieron entrar en el sistema\n'/>
+	<word key='advertencia' value='Advertencia'/>
+	<word key='tests_no_enviados' value='El envío de los siguientes tests falló\n\n'/>
+	<word key='exportingDlg.title' value='Exportación'/>
+	<word key='exportEndDlg.title' value='Exportación'/>
+	<word key='exportFailedDlg.title' value='Exportación'/>
+	<word key='exporting' value='Por favor espere, exportando...'/>
+	<word key='export.done' value='Exportación finalizada'/>
+	<word key='export.failed' value='La exportación falló'/>
+	<word key='exportpath.notfound' value='La exportación falló porque no se encontró la ruta de exportación'/>
+	<word key='export.aborted' value='La exportación se interrumpió'/>
+	<word key='internal.error' value='Ocurrió un error durante la exportación'/>
+</words>

@@ -1,0 +1,70 @@
+<html>
+<head>
+    <style type="text/css">
+        body
+        {
+            font: 14 pt arial;
+            color: white;
+            background-image: url('images/fondo.jpg');
+        }
+        table
+        {
+            width: 60%; 
+            height: 60%;
+            margin-left: 20%;
+            margin-top: 10%;
+            }
+        input.btn
+        {
+            width: 98%;
+            height: 90%;
+            font: 24px bold 84% 'trebuchet ms' ,helvetica,sans-serif;
+            border: 1px solid;
+            filter: progid:DXImageTransform.Microsoft.Gradient (GradientType=0,StartColorStr= '#e6e6e6' ,EndColorStr= '#CCCCCC' );
+        }
+        .BottomBar
+        {
+        	z-index: 2; position: absolute; 
+        	right: 0px; bottom: 0px; 
+        	width: 30%; height: 4%; 
+        	background-image:url(images/fondoverde.png);
+        }
+    </style>
+    <title>y-Plat Aliq</title>
+    <hta:application applicationname="y-Plat Aliq" id="y-Plat Aliq" version="1.0" caption="no"
+        icon="y-Plat Aliq.ico" scroll="no" scrollflat="yes" singleinstance="yes" windowstate="maximize"
+        navigable="yes" />
+</head>
+<script language="VBScript">
+
+Sub Window_OnLoad
+  'This method will be called when the application loads
+  'Add your code here
+End Sub
+'shutdown -r -t 60 -c "este ordenador se apagará dentro de 1 minuto"
+Sub OnClickButtonbtn_Process()
+  'This method will be called when button "btn_Process" is clicked
+  'Add your code here
+End Sub
+Sub OnClickButtonbtn_Report()
+  'This method will be called when button "btn_Report" is clicked
+  'Add your code here
+End Sub
+Sub OnClickButtonbtn_ShutDown()
+  'This method will be called when button "btn_ShutDown" is clicked
+  'Add your code here
+End Sub
+</script>
+<body>
+    <!--Add your controls here-->
+    <div>
+    <table border="0">
+    <tr><td align="center"><input type="button" class="btn" name="btn_Process" id="btn_Process" value="Comenzar un Proceso" onclick="location.href='y-Plat Aliq ProcessForm.hta'"></td></tr>
+    <tr><td align="center"><input type="button" class="btn" name="btn_Report" id="btn_Report" value="Ver un Reporte Anterior" onclick="location.href='y-Plat Aliq Report.hta'"></td></tr>
+    <tr><td align="center"><input type="button" class="btn" name="btn_ShutDown" id="btn_ShutDown" value="Cerrar el Ordenador"  onclick="location.href='y-Plat Aliq ShutDown.hta'"></td></tr>
+    </table>
+    </div>
+    <div name="INyDIA_BottomBar" class="BottomBar">&nbsp;</div>
+    <!--{{InsertControlsHere}}-Do not remove this line-->
+</body>
+</html>

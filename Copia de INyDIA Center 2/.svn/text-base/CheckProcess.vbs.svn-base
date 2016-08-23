@@ -1,0 +1,44 @@
+' ****************************************************************
+' This function checks if a process is running on a (remote) 
+'computer
+' Requires WMI
+' *****************************************************************
+' Check out http://www.activxperts.com for more samples and components
+' ****************************************************************************
+
+Function IsProcessRunning( strServer, strProcess )
+    Dim Process, strObject
+    IsProcessRunning = False
+    strObject   = "winmgmts://" & strServer
+    For Each Process in GetObject( strObject ).InstancesOf( "win32_process" )
+	If UCase( Process.name ) = UCase( strProcess ) Then
+            IsProcessRunning = True
+            Exit Function
+        End If
+    Next
+End Function
+
+' ****************************************************************************
+' Main
+' ****************************************************************************
+Dim strComputer, strProcess
+strComputer = "localhost"
+strProcess = "xtool.exe"
+
+'Do
+'   strProcess = inputbox( "Please enter the name of the process (for instance: explorer.exe)", "Input" )
+'Loop until strProcess <> ""
+'Do
+'   strComputer = inputbox( "Please enter the computer name", "Input" )
+'Loop until strComputer <> ""
+StillRunning = IsProcessRunning( strComputer, strProcess )
+
+Do While StillRunning
+	WScript.Sleep(1000) 
+	StillRunning = IsProcessRunning( strComputer, strProcess )
+	If( StillRunning ) Then
+	    WScript.Echo "Process " & strProcess & " is running on computer " & strComputer
+	Else
+	    WScript.Echo "Process " & strProcess & " is NOT running on computer " & strComputer
+	End If
+Loop 

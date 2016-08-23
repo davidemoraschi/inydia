@@ -1,0 +1,64 @@
+' StartProcessLocal.vbs
+' Free example VBScript to start a process (not interactive)
+' Author Guy Thomas http://computerperformance.co.uk/
+' Version 1.8 - December 2005
+' -------------------------------------------------------'
+Option Explicit
+Dim objWMIService, objProcess, StillRunning
+Dim strShell, objProgram', strComputer, strExe, objCalc
+
+Const strComputer = "."
+Const strExe = "C:\Lirix\xtool.exe /rbdata\macros\0101_Davide.bas"
+
+' Connect to WMI
+Set objWMIService = getobject("winmgmts://" & strComputer & "/root/cimv2")
+
+' Obtain the Win32_Process class of object.
+Set objProcess = objWMIService.Get("Win32_Process")
+Set objProgram = objProcess.Methods_("Create").InParameters.SpawnInstance_
+objProgram.CommandLine = strExe
+
+'Execute the program now at the command line.
+Set strShell = objWMIService.ExecMethod("Win32_Process", "Create", objProgram)
+
+WScript.echo "Created: " & strExe & " on " & strComputer
+
+Set objProgram = Nothing
+Set objProcess = Nothing
+Set objWMIService = Nothing
+
+StillRunning = IsProcessRunning( strComputer, "xtool.exe" )
+
+Do While StillRunning
+	WScript.Sleep(1000) 
+	StillRunning = IsProcessRunning( strComputer, "xtool.exe" )
+	If( StillRunning ) Then
+	    WScript.Echo "Process " & strExe & " is still running on computer " & strComputer
+	Else
+	    WScript.Echo "Process " & strExe & " finished on computer " & strComputer
+	End If
+Loop 
+WScript.Quit
+
+' ****************************************************************
+' This function checks if a process is running on a (remote) 
+' computer
+' Requires WMI
+' *****************************************************************
+' Check out http://www.activxperts.com for more samples and components
+' ****************************************************************************
+
+Function IsProcessRunning( strComputer, strExe )
+    Dim Process, strObject
+    IsProcessRunning = False
+    strObject   = "winmgmts://" & strComputer
+    For Each Process in GetObject( strObject ).InstancesOf( "win32_process" )
+	If UCase( Process.name ) = UCase( strExe ) Then
+            IsProcessRunning = True
+            Exit Function
+        End If
+    Next
+    Set Process = Nothing
+    Set strObject = Nothing
+End Function
+

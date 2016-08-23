@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<config>
+  <txt status="off" exportPath="C:\target" includeRunIdInName="on" includeDateInName="on" sep="," eol="\n" />
+  <tests status="on" exportPath="" />
+</config>

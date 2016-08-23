@@ -1,0 +1,4 @@
+[Parameters]
+Name=DetectLiquid_VolArr
+Group=BASIC_LIQUID_HANDLING
+Remark=INyDIA 2010 (Davide Moraschi)

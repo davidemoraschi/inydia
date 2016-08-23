@@ -1,0 +1,4 @@
+[General]
+ProcessLayout=TEST
+HardwareLayout=TEST
+Info=SEROTECA lee codigos de placa y genera reporte

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<words>
+	<word key='searchingDlg.title' value="Test search"/>
+	<word key='search.done' value="Search finished"/>
+	<word key='search.failed' value="Search failed"/>
+	<word key='search.aborted' value="Search aborted"/>
+	<word key='searching' value="Searching, please wait..."/>
+	<word key='search.didnotfound' value="No tests were found"/>
+
+	<word key='tests.not.exported' value="The following tests could not be exported: "/>
+	<word key='tests.not.exported.caption' value="Export failed"/>
+	<word key='error.at.export.ref' value="Error at exporting "/>
+
+	<word key='param_processingstart' value="Date"/>
+	<word key='param_assayid' value="Assay ID"/>
+	<word key='param_testref' value="Reference"/>
+	<word key='param_devicename' value="Device"/>
+	<word key='param_deviceserial' value="Run"/>
+	<word key='param_testid' value="Test ID"/>
+	<word key='select.title' value="Genomica LIMS"/>
+	<word key='select.message' value="Select tests to be exported to LIMS"/>
+	<word key='search.folder' value="Select the folder where the tests are located"/>
+	<word key='search.folder' value='\nSelect the folder where the tests are located'/>
+	<word key='btn.selectall' value='Select all'/>
+	<word key='btn.clean' value='Clear all'/>
+	<word key='btn.save' value='Send'/>
+	<word key='btn.close' value='Close'/>
+	<word key='btn.accept' value='Ok'/>
+	<word key='btn.cancel' value='Cancel'/>
+	<word key='export' value='LIMS Wizard'/>
+	<word key='export_ok' value='All tests were successfully sent'/>
+	<word key='export_no' value='The upload of the following tests failed\n'/>
+	<word key='advertencia' value='Warning'/>
+	<word key='tests_no_enviados' value='The upload of the following tests failed\n\n'/>
+	<word key='exportingDlg.title' value='Export'/>
+	<word key='exportEndDlg.title' value='Export'/>
+	<word key='exportFailedDlg.title' value='Export'/>
+	<word key='exporting' value='Please wait, exporting'/>
+	<word key='export.done' value='Export finished'/>
+	<word key='export.failed' value='Export failed'/>
+	<word key='exportpath.notfound' value='Export path not found'/>
+	<word key='export.aborted' value='Export aborted'/>
+	<word key='internal.error' value='An error occurred during exportation'/>
+</words>
+

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Canvas-based progressbar</title>
+    <style type="text/css">
+<!--
+body {
+	margin: 0;
+	padding: 2em;
+}
+-->
+</style>
+    <script type="text/javascript" src="mootools-yui-compressed.js"></script>
+    <script type="text/javascript" src="excanvas.js"></script>
+    <script type="text/javascript" src="Rectangle.js"></script>
+    <script type="text/javascript" src="ProgressBar.js"></script>
+    <script type="text/javascript">
+
+        var pb, pb2, pb3;
+
+        window.addEvent('domready', function () {
+
+            pb = new ProgressBar({
+                id: "myProgBar",
+                injectInto: "container1",
+                width: 400,
+                height: 12
+            }).set(25);
+
+            pb2 = new ProgressBar({
+                id: "myProgBar2",
+                injectInto: "container2",
+                width: 300,
+                height: 20,
+                progressbarGradientColors: ["#0CF", "#369"]
+            }).set(50);
+
+            pb3 = new ProgressBar({
+                id: "myProgBar3",
+                injectInto: "container3",
+                width: 200,
+                height: 50,
+                backgroundGradientColors: ["#FFF", "#DDD"],
+                progressbarGradientColors: ["#FFF", "#F36"]
+            }).set(75);
+        });
+
+    </script>
+</head>
+<body>
+    <div id="container1">
+    </div>
+    <p>
+        <a href="#" onclick="pb.set(55); return false">click to set to 55%</a> | <a href="#"
+            onclick="pb.set(100); return false">click to set to 100%</a> | <a href="#" onclick="pb.set(28); return false">
+                click to set to 28%</a></p>
+    <div id="container2">
+    </div>
+    <p>
+        <a href="#" onclick="pb2.set(0); return false">click to set to 0%</a> | <a href="#"
+            onclick="pb2.set(33); return false">click to set to 33%</a> | <a href="#" onclick="pb2.set(66); return false">
+                click to set to 66%</a> | <a href="#" onclick="pb2.set(100); return false">click to
+                    set to 100%</a></p>
+    <div id="container3">
+    </div>
+    <p>
+        <a href="#" onclick="pb3.set(0); return false">click to set to 0%</a> | <a href="#"
+            onclick="pb3.set(33); return false">click to set to 33%</a> | <a href="#" onclick="pb3.set(66); return false">
+                click to set to 66%</a> | <a href="#" onclick="pb3.set(100); return false">click to
+                    set to 100%</a></p>
+</body>
+</html>

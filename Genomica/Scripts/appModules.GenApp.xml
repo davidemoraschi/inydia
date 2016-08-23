@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<modules>
+  <origen modulo="GenAppOrigen" />
+  <buscador modulo="GenAppBuscador" />
+  <selector modulo="GenAppSelector" />
+  <exportador modulo="GenAppExportador" />
+</modules>

@@ -1,0 +1,45 @@
+<html>
+ <head>
+ <title>Real Time Log Viewer</title>
+ <HTA:APPLICATION 
+      ID="objTest" 
+      APPLICATIONNAME="RTLV"
+      SCROLL="yes"
+      SINGLEINSTANCE="yes"
+ >
+ </head>
+ 
+ <SCRIPT Language="VBScript">
+     Sub Window_Onload
+      Set oShell = CreateObject("WScript.Shell") 
+      Dim iTimer 
+      Dim oshell 
+ 	 WinWidth = 1000
+      WinHeight = 400
+      CenterWindow WinWidth,WinHeight
+      'sFileName = msgbox("Enter file name", default="backuplog.txt")
+      readfile
+      iTimer = window.setInterval("ReadFile", 2000) 
+   End Sub
+ 
+    Sub CenterWindow( widthX, heightY )
+         self.ResizeTo widthX, heightY 
+         self.MoveTo (screen.Width - widthX)/2, (screen.Height - heightY)/2
+    End Sub
+ 
+ 
+     Sub ReadFile
+         Set objFSO = CreateObject("Scripting.FileSystemObject")        
+         Set objFile = objFSO.OpenTextFile("C:\Lirix\log\XIRIL_IO29.log")
+         strContents = objFile.ReadAll
+         LogContents.Value = strContents
+         LogContents.scrollTop = LogContents.scrollHeight
+         objFile.Close
+     End Sub
+ </SCRIPT>
+ 
+ <body>
+ 
+                 <textarea name="LogContents" style="font-family:Courier New"rows="20" cols="100"></textarea>
+ 
+ </body>

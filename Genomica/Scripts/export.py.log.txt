@@ -1,0 +1,45 @@
+2010-10-04 14:35:18,947 INFO inputOrigen recibido = 24,2010_9_1_8_27_11_32,A1,2010_9_1_8_27_11_32,A3,2010_9_1_8_27_11_32,B3,2010_9_1_8_27_11_32,C3,2010_9_1_8_27_11_32,B1,2010_9_1_8_27_11_32,D3,2010_9_1_8_27_11_32,E3,2010_9_1_8_27_11_32,F3,2010_9_1_8_27_11_32,H3,2010_9_1_8_27_11_32,A5,2010_9_1_8_27_11_32,B5,2010_9_1_8_27_11_32,D5,2010_9_1_8_27_11_32,E5,2010_9_1_8_27_11_32,F5,2010_9_1_8_27_11_32,G5,2010_9_1_8_27_11_32,D1,2010_9_1_8_27_11_32,H5,2010_9_1_8_27_11_32,E1,2010_9_1_8_27_11_32,G1,2010_9_1_8_27_11_32,G3,2010_9_1_8_27_11_32,C1,2010_9_1_8_27_11_32,C5,2010_9_1_8_27_11_32,F1,2010_9_1_8_27_11_32,H1
+2010-10-04 14:35:18,947 INFO modulesFile recibido = 
+2010-10-04 14:35:18,947 INFO mockArgument1 recibido = 
+2010-10-04 14:35:18,947 INFO mockArgument2 recibido = 
+2010-10-04 14:35:18,947 INFO inputOrigen = 24,2010_9_1_8_27_11_32,A1,2010_9_1_8_27_11_32,A3,2010_9_1_8_27_11_32,B3,2010_9_1_8_27_11_32,C3,2010_9_1_8_27_11_32,B1,2010_9_1_8_27_11_32,D3,2010_9_1_8_27_11_32,E3,2010_9_1_8_27_11_32,F3,2010_9_1_8_27_11_32,H3,2010_9_1_8_27_11_32,A5,2010_9_1_8_27_11_32,B5,2010_9_1_8_27_11_32,D5,2010_9_1_8_27_11_32,E5,2010_9_1_8_27_11_32,F5,2010_9_1_8_27_11_32,G5,2010_9_1_8_27_11_32,D1,2010_9_1_8_27_11_32,H5,2010_9_1_8_27_11_32,E1,2010_9_1_8_27_11_32,G1,2010_9_1_8_27_11_32,G3,2010_9_1_8_27_11_32,C1,2010_9_1_8_27_11_32,C5,2010_9_1_8_27_11_32,F1,2010_9_1_8_27_11_32,H1
+2010-10-04 14:35:18,947 INFO modulesFile = appModules.xml
+2010-10-04 14:35:18,947 INFO Cargo origen
+2010-10-04 14:35:18,961 DEBUG Empiezo
+2010-10-04 14:35:18,961 DEBUG Debo cargar GenAppOrigen
+2010-10-04 14:35:18,961 DEBUG Lo tengo aquí
+2010-10-04 14:35:18,961 DEBUG <module 'GenAppOrigen' from 'C:\genomica\data\scripts\GenAppOrigen.py'>
+2010-10-04 14:35:18,961 DEBUG Ya tengo la clase
+2010-10-04 14:35:18,961 INFO Proceso origen
+2010-10-04 14:35:18,961 INFO Las carpetas son...
+2010-10-04 14:35:18,961 INFO ['C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\A1', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\A3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\B3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\C3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\B1', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\D3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\E3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\F3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\H3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\A5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\B5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\D5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\E5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\F5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\G5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\D1', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\H5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\E1', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\G1', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\G3', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\C1', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\C5', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\F1', 'C:\\Genomica\\Data\\Results\\2010_9_1_8_27_11_32\\H1']
+2010-10-04 14:35:18,961 INFO Cargo buscador
+2010-10-04 14:35:18,961 DEBUG Empiezo
+2010-10-04 14:35:18,961 DEBUG Debo cargar GenAppBuscador
+2010-10-04 14:35:18,961 DEBUG Lo tengo aquí
+2010-10-04 14:35:18,961 DEBUG <module 'GenAppBuscador' from 'C:\genomica\data\scripts\GenAppBuscador.py'>
+2010-10-04 14:35:18,961 DEBUG Ya tengo la clase
+2010-10-04 14:35:18,961 INFO Proceso buscador
+2010-10-04 14:35:18,993 DEBUG Considero los rutas C:\Genomica\Data\Results\2010_9_1_8_27_11_32\A1, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\A3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\B3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\C3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\B1, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\D3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\E3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\F3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\H3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\A5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\B5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\D5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\E5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\F5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\G5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\D1, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\H5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\E1, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\G1, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\G3, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\C1, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\C5, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\F1, C:\Genomica\Data\Results\2010_9_1_8_27_11_32\H1
+2010-10-04 14:35:19,743 INFO Cargo selector
+2010-10-04 14:35:19,743 DEBUG Empiezo
+2010-10-04 14:35:19,743 DEBUG Debo cargar GenAppSelector
+2010-10-04 14:35:19,743 DEBUG Lo tengo aquí
+2010-10-04 14:35:19,743 DEBUG <module 'GenAppSelector' from 'C:\genomica\data\scripts\GenAppSelector.py'>
+2010-10-04 14:35:19,743 DEBUG Ya tengo la clase
+2010-10-04 14:35:19,743 INFO Proceso selector
+2010-10-04 14:35:19,743 DEBUG Seleccionados = (debajo)
+2010-10-04 14:35:19,743 DEBUG [<Test.Test instance at 0x00B88F58>, <Test.Test instance at 0x00BD3080>, <Test.Test instance at 0x00BD3148>, <Test.Test instance at 0x00BD30D0>, <Test.Test instance at 0x00BD31C0>, <Test.Test instance at 0x00BD3170>, <Test.Test instance at 0x00B88DC8>, <Test.Test instance at 0x00BD3210>, <Test.Test instance at 0x00BD3260>, <Test.Test instance at 0x00B88F30>, <Test.Test instance at 0x00B88D78>, <Test.Test instance at 0x00B88EB8>, <Test.Test instance at 0x00B88EE0>, <Test.Test instance at 0x00B88FA8>, <Test.Test instance at 0x00B88E68>, <Test.Test instance at 0x00BD3300>, <Test.Test instance at 0x00BD3120>, <Test.Test instance at 0x00BD30A8>, <Test.Test instance at 0x00BD32B0>, <Test.Test instance at 0x00B88F80>, <Test.Test instance at 0x00B88F08>, <Test.Test instance at 0x00B88DF0>, <Test.Test instance at 0x00B88FD0>, <Test.Test instance at 0x00BD30F8>]
+2010-10-04 14:35:19,743 INFO Cargo exportador
+2010-10-04 14:35:19,743 DEBUG Empiezo
+2010-10-04 14:35:19,743 DEBUG Debo cargar GenAppExportador
+2010-10-04 14:35:19,805 DEBUG Lo tengo aquí
+2010-10-04 14:35:19,805 DEBUG <module 'GenAppExportador' from 'C:\genomica\data\scripts\GenAppExportador.py'>
+2010-10-04 14:35:19,805 DEBUG Ya tengo la clase
+2010-10-04 14:35:19,805 INFO Proceso exportador
+2010-10-04 14:35:19,805 DEBUG Estoy en ProgressDialog.__init__
+2010-10-04 14:35:19,805 INFO Leyendo los archivos de idioma export.py.voc.1033
+2010-10-04 14:35:19,836 INFO Leyendo los archivos de idioma export.py.voc.1033
+2010-10-04 14:35:19,836 DEBUG Estoy en ProgressDialog.Show
+2010-10-04 14:35:27,025 DEBUG FinishWindow.Show
+2010-10-04 14:35:35,259 INFO Fin

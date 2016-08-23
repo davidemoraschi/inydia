@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<words>
+	<word key='searchingDlg.title' value="Test search"/>
+	<word key='search.done' value="Search finished"/>
+	<word key='search.failed' value="Search failed"/>
+	<word key='search.aborted' value="Search aborted"/>
+	<word key='searching' value="Searching, please wait..."/>
+	<word key='search.didnotfound' value="No tests were found"/>
+
+	<word key='tests.not.exported' value="The following tests could not be exported: "/>
+	<word key='tests.not.exported.caption' value="Export failed"/>
+	<word key='error.at.export.ref' value="Error at exporting "/>
+
+
+	<word key='param_processingstart' value="Date"/>
+	<word key='param_assayid' value="Assay ID"/>
+	<word key='param_testref' value="Reference"/>
+	<word key='param_devicename' value="Device"/>
+	<word key='param_deviceserial' value="Run"/>
+	<word key='param_testid' value="Test ID"/>
+	<word key='select.title' value="Genomica LIMS"/>
+	<word key='select.message' value="Select tests to be exported to LIMS"/>
+  <word key='btn.accept' value='Ok'/>
+  <word key='btn.cancel' value='Annulation'/>
+  <word key="exportingDlg.title" value="Exportation" />
+  <word key="exportEndDlg.title" value="Exportation" />
+  <word key="exportFailedDlg.title" value="Exportation" />
+  <word key="exporting" value="S'il vous plaît attendez, exportation..." />
+  <word key="export.done" value="Exportation effectuée" />
+  <word key="export.failed" value="Echec exportation " />
+  <word key="exportpath.notfound" value="Export Path non trouvé" />
+  <word key="export.aborted" value="Exportation annulé" />
+  <word key="internal.error" value="Erreur interne" />
+</words>

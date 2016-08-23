@@ -1,0 +1,611 @@
+<html>
+<head>
+<style type="text/css">
+.meter-wrap{
+position: relative;
+}
+
+.meter-wrap, .meter-value, .meter-text {
+/* The width and height of your image */
+width: 100%; height: 30px;
+}
+
+.meter-wrap, .meter-value {
+background: #bdbdbd url(meter-outlie.png) top left no-repeat;
+filter: progid:DXImageTransform.Microsoft.Gradient (GradientType=0,StartColorStr= '#e6e6e6' ,EndColorStr= '#CCCCCC' );
+}
+
+.meter-text {
+position: absolute;
+top:0; left:0;
+
+padding-top: 5px;
+
+color: #fff;
+filter: progid:DXImageTransform.Microsoft.Gradient (GradientType=0,StartColorStr= '#FFFFFF' ,EndColorStr= '#00CC00' );
+text-align: center;
+width: 100%;
+}
+
+</style>
+    <style type="text/css">
+        body
+        {
+            font: 14 pt arial;
+            color: white;
+            background-image: url('images/fondo.jpg');
+        }
+        table
+        {
+            width: 98%; 
+            height: 90%;
+            margin-left: 1%;
+            margin-top: 1%;
+            }
+        input.btn
+        {
+            width: 80%;
+            height: 60%;
+            font: 24px bold 84% 'trebuchet ms' ,helvetica,sans-serif;
+            border: 1px solid;
+            filter: progid:DXImageTransform.Microsoft.Gradient (GradientType=0,StartColorStr= '#e6e6e6' ,EndColorStr= '#CCCCCC' );
+        }
+        select
+        {
+            font: 24px bold 84% 'trebuchet ms' ,helvetica,sans-serif;
+            background-color: lightyellow;
+            width: 75%;
+        }
+        textarea
+        {
+            width: 100%;
+            overflow: auto;
+            font: 24px bold 84% 'trebuchet ms' ,helvetica,sans-serif;
+            color: Blue;
+            background-color: lightyellow;
+        }        
+        span
+        {
+            font: 24px bold 84% 'trebuchet ms' ,helvetica,sans-serif;
+            color: black;
+        }
+        img
+        {
+        	height: 70%;
+            width: 90%;
+        }
+        .BottomBar
+        {
+        	z-index: 2; position: absolute; 
+        	right: 0px; bottom: 0px; 
+        	width: 30%; height: 4%; 
+        	background-image:url(images/fondoverde.png);"
+        }
+    </style>
+    <title>y-Plat Aliq</title>
+    <hta:application applicationname="y-Plat Aliq" id="y-Plat Aliq" version="1.0" caption="no"
+        icon="y-Plat Aliq.ico" scroll="no" scrollflat="yes" singleinstance="yes" windowstate="maximize"
+        navigable="yes" />
+</head>
+<script type="text/vbscript" language="VBScript">
+Option Explicit
+
+Class Process
+' Properties and methods go here.
+    Public FileName
+    Public DefFileName
+    Public Title 
+    Public Category 
+    public Subject 
+    Public Comment 
+    Public Layout
+End Class
+
+Public Processes()
+Dim Groups
+Set Groups = CreateObject("Scripting.Dictionary")
+
+Const EXT_Author = 9    'Siempre INyDIA
+Const EXT_Title = 10    'Aparece como nombre en la lista desplegable
+Const EXT_Subject = 11  'Número de segundos por muestra
+Const EXT_Category = 12 'Grupo, aparece en el desplegable de grupos
+Const EXT_Comment = 14  'Descripcion para el usuario
+
+Const LIRIX_Data_Folder = "C:\Lirix\data"
+Const LIRIX_Macro_Folder = "C:\Lirix\data\macros"
+Const LIRIX_Process_Folder = "C:\Lirix\data\process"
+Const LIRIX_Log_File = "C:\Lirix\log\XIRIL_IO01.log"
+Const LIRIX_Author = "INyDIA"
+Const strComputer = "."
+Const strExe = "C:\Lirix\xtool.exe /rb"
+Const strBreak = "C:\\Lirix\\PressBreak.exe"
+Dim iTimerID, str_EXEC_File, StartTime, ProcEstRunTime
+
+Function SortDict(ByVal objDict)
+    'Call using "Set objDictSorted = SortDict(objDict)"
+     
+    Dim i, j, temp
+     
+    For Each i In objDict
+        For Each j In objDict
+            If(objDict.Item(i) <= objDict.Item(j)) Then
+            temp = objDict.Item(i)
+            objDict.Item(i) = objDict.Item(j)
+            objDict.Item(j) = temp
+            End If
+        Next
+    Next
+
+   Set SortDict = objDict
+
+End Function
+'***********************
+'* This function calculates hours, minutes
+'* and seconds based on how many seconds
+'* are passed in and returns a nice format
+Public Function PrintHrMinSec(elap)
+  Dim hr
+  Dim min
+  Dim sec
+  Dim remainder
+
+  elap = Int(elap) 'Just use the INTeger portion of the variable
+
+  'Using "\" returns just the integer portion of a quotient
+  hr = elap \ 3600 '1 hour = 3600 seconds
+  remainder = elap - hr * 3600
+  min = remainder \ 60
+  remainder = remainder - min * 60
+  sec = remainder
+
+  'Prepend leading zeroes if necessary
+  If Len(sec) = 1 Then sec = "0" & sec
+  If Len(min) = 1 Then min = "0" & min
+
+  'Only show the Hours field if it's non-zero
+  If hr = 0 Then
+     PrintHrMinSec = min & ":" & sec
+  Else
+     PrintHrMinSec = hr & ":" & min & ":" & sec
+  End If
+
+End Function
+
+Function usrFormatDateTime(dtmInputDate,strDateTimeFormat)
+    'Required Parameters:
+    '
+    'dtmInputDate : A Date String or Date Value.
+    'strDateTimeFormat : A String specifying the desired format using Microsoft MSDN standards.
+    '
+    'Date/Time Standard Formats - Case-Sensitive.
+    '********************************************
+    'M : Months 1-12
+    'MM : Months 01-12
+    'MMM : Month Names in three-char abbreviated format
+    'MMMM : Month Names
+    'd : Days 1-31
+    'dd : Days 01-31
+    'ddd : Day Names in three-char abbreviated format
+    'dddd : Day Names
+    'yy : Two-digit Year
+    'yyyy : Four-digit Year
+    'h : Hours 1-12, 12-hour format
+    'hh : Hours 01-12, 12-hour format
+    'H : Hours 0-23, 24-hour format
+    'HH : Hours 00-23,24-hour format
+    'm : Minutes 0-59
+    'mm : Minutes 00-59
+    's : Seconds 0-59
+    'ss : Seconds 00-59
+    't : AM or PM
+
+    'Use Current Date and Time if value passed is not a date.
+    If Not IsDate(dtmInputDate) then
+        dtmInputDate = Now()
+    End if
+
+    Dim strFormattedDateTime
+
+    'Prepare a regular expression object to manage search and replace of formatting strings.
+    Dim objFormattedDateRegExp
+    Set objFormattedDateRegExp = New RegExp
+    objFormattedDateRegExp.IgnoreCase = False
+    objFormattedDateRegExp.Global = True
+
+    strFormattedDateTime = strDateTimeFormat
+
+    'The following presume that Sunday is first day of the week.
+    'Refer to documentation on the WEEKDAYNAME() and WEEKDAY() functions, to adjust if needed.
+    Dim intMonth
+    Dim intDay
+    Dim intYear
+    Dim intHour
+    Dim intMinute
+    Dim intSecond
+    Dim strWeekday
+    Dim strMonth
+    Dim strAMPM
+
+    intMonth = Month(dtmInputDate)
+    intDay = Day(dtmInputDate)
+    intYear = Year(dtmInputDate)
+    intHour = Hour(dtmInputDate)
+    intMinute = Minute(dtmInputDate)
+    intSecond = Second(dtmInputDate)
+    strWeekday = WeekdayName(Weekday(dtmInputDate))
+    strMonth = MonthName(intMonth)
+    strAMPM = "AM"
+
+    'Replace the Month format.
+    '************************
+    objFormattedDateRegExp.Pattern = "MMMM"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, strMonth)
+    objFormattedDateRegExp.Pattern = "MMM"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, UCase(Left(strMonth,3)))
+    objFormattedDateRegExp.Pattern = "MM"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, Right("0" & intMonth,2))
+    'Watch out for m's in the month name or month name abbrev.
+    objFormattedDateRegExp.Pattern = "(M(?=[^AaBbOo])|M$)~^([Ee]M)"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, intMonth)
+
+    'Replace the Day format.
+    '************************
+    objFormattedDateRegExp.Pattern = "dddd"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, strWeekday)
+    objFormattedDateRegExp.Pattern = "ddd"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, UCase(Left(strWeekday,3)))
+    objFormattedDateRegExp.Pattern = "dd"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, Right("0" & intDay,2))
+    'Watch out for m's in the day name or day name abbrev.
+    objFormattedDateRegExp.Pattern = "(d(?=[^EeAaNn])|d$)^([Nn]d|[Ss]d|[Ii]d|[Rr]d)"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, intDay)
+
+    'Replace the Year format.
+    '************************
+    objFormattedDateRegExp.Pattern = "yyyy"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, intYear)
+    objFormattedDateRegExp.Pattern = "yy"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, Right(intYear,2))
+
+    'Replace the Hour format.
+    '************************
+    '24-Hour format
+    objFormattedDateRegExp.Pattern = "HH"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, Right("0" & intHour,2))
+    objFormattedDateRegExp.Pattern = "(H(?=[^Uu])|H$)^([Cc]H|[Tt]H)"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, intHour)
+
+    '12-Hour format
+    'At this point, you are done with the intHour formatted in 24-hour time, so drop it to a 12-Hour format.
+    If intHour > 12 Then
+    intHour = intHour - 12
+    strAMPM = "PM"
+    End If
+    If intHour = 0 Then
+    intHour = 12
+    End If
+    objFormattedDateRegExp.Pattern = "hh"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, Right("0" & intHour,2))
+    objFormattedDateRegExp.Pattern = "(h(?=[^Uu])|h$)^([Cc]h|[Tt]h)"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, intHour)
+
+    'Replace the Minute format.
+    '************************
+    objFormattedDateRegExp.Pattern = "mm"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, Right("0" & intMinute,2))
+    objFormattedDateRegExp.Pattern = "(m(?=[^AaBbOo])|m$)^([Ee]m)"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, intMinute)
+
+    'Replace the Second format.
+    '************************
+    objFormattedDateRegExp.Pattern = "ss"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, Right("0" & intSecond,2))
+    objFormattedDateRegExp.Pattern = "(s(?=[^TtEeUuDdAa])|s$)^([Uu]s|[Ee]s|[Rr]s)"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, intSecond)
+
+    'Replace the AM/PM format.
+    '************************
+    objFormattedDateRegExp.Pattern = "(t(?=[^HhUuEeOo])|t$)^([Ss]t|[Aa]t|[Pp]t|[Cc]t)"
+    strFormattedDateTime = objFormattedDateRegExp.Replace(strFormattedDateTime, strAMPM)
+
+    usrFormatDateTime = strFormattedDateTime
+
+End Function
+
+Function IsProcessRunning( strComputer, strExe )
+' ****************************************************************
+' This function checks if a process is running on a (remote) 
+' computer
+' Requires WMI
+' *****************************************************************
+' Check out http://www.activxperts.com for more samples and components
+' ****************************************************************************
+    Dim Process, strObject
+    IsProcessRunning = False
+    strObject   = "winmgmts://" & strComputer
+    For Each Process in GetObject( strObject ).InstancesOf( "win32_process" )
+	If UCase( Process.name ) = UCase( strExe ) Then
+            IsProcessRunning = True
+            Exit Function
+        End If
+    Next
+    Set Process = Nothing
+    Set strObject = Nothing
+End Function
+
+Sub Window_OnLoad	
+'Call window.resizeTo (1000,700)
+'Call window.moveTo (50, 50)
+
+	Dim objNewOption, objShell, objFolder, strFileName, first, count, Group, ff
+	Set objShell = CreateObject("Shell.Application")
+    StartTime = Timer
+	Call CleanLogs()
+
+	first = 1
+    count = 0
+	Set objFolder = objShell.Namespace(LIRIX_Macro_Folder)
+   	Set ff = CreateObject("cuf.FileFunctions")
+
+	For Each strFileName in objFolder.Items
+		If objFolder.GetDetailsOf(strFileName, EXT_Author) = LIRIX_Author Then
+            ReDim Preserve Processes(count)
+            Set Processes(count) = New Process
+            Processes(count).FileName = strFileName.Path
+            Processes(count).DefFileName = Replace(strFileName.Path, ".bas", ".mac")
+            Processes(count).Title = objFolder.GetDetailsOf(strFileName, EXT_Title)
+            Processes(count).Category = objFolder.GetDetailsOf(strFileName, EXT_Category)
+            Processes(count).Subject = objFolder.GetDetailsOf(strFileName, EXT_Subject)
+            Processes(count).Comment = objFolder.GetDetailsOf(strFileName, EXT_Comment)
+            Processes(count).Layout = "file://" & LIRIX_Data_Folder & "\" & ff.GetINIString(Processes(count).DefFileName, "General", "ProcessLayout") & ".bmp"
+            If Not Groups.Exists(Processes(count).Category) Then
+                Call Groups.Add (Processes(count).Category,Processes(count).Category)
+            End if
+            count = count + 1
+   		End If
+	Next
+    
+ 	Set objFolder = objShell.Namespace(LIRIX_Process_Folder)
+	For Each strFileName in objFolder.Items
+		If objFolder.GetDetailsOf(strFileName, EXT_Author) = LIRIX_Author Then
+            ReDim Preserve Processes(count) 
+            Set Processes(count) = New Process
+            Processes(count).FileName = strFileName.Path
+            Processes(count).DefFileName = Replace(strFileName.Path, ".bas", ".prc")
+            Processes(count).Title = objFolder.GetDetailsOf(strFileName, EXT_Title)
+            Processes(count).Category = objFolder.GetDetailsOf(strFileName, EXT_Category)
+            Processes(count).Subject = objFolder.GetDetailsOf(strFileName, EXT_Subject)
+            Processes(count).Comment = objFolder.GetDetailsOf(strFileName, EXT_Comment)
+            Processes(count).Layout = "file://" & LIRIX_Data_Folder & "\" & ff.GetINIString(Processes(count).DefFileName, "General", "ProcessLayout") & ".bmp"
+            If Not Groups.Exists(Processes(count).Category) Then
+                Call Groups.Add (Processes(count).Category,Processes(count).Category)
+            End if
+            count = count + 1
+   		End If
+	Next
+
+    If Groups.Exists("") Then
+        Groups.Remove("")
+    End If
+
+    Set Groups = SortDict(Groups)
+    For Each Group in Groups.Items
+    	Set objNewOption = document.createElement("OPTION")
+   		objNewOption.Text = Group   
+   		If first = 1 Then
+   			objNewOption.Selected = True
+   			first = 0
+   		End If  			 				 		
+	   	lst_Groups.options.Add(objNewOption)
+    Next
+	
+    Set ff = Nothing
+    Set Group = Nothing
+	Set strFileName = Nothing
+	Set objNewOption = Nothing
+	Set objFolder = Nothing
+	Set objShell = Nothing
+	
+	Call OnChangeSelectlst_Groups()
+End Sub
+
+Sub OnChangeSelectlst_Groups()
+	Dim objOption, objNewOption, i 
+
+    For i = lst_Macros.options.length to 0 step -1
+      lst_Macros.options.Remove(i)
+    Next 
+    txtLogFile.innerHTML = ""
+    txt_MacroName.innerHTML = ""
+    img_Layout.src = "./blank.gif"
+
+	For Each objOption in lst_Groups.Options
+		If objOption.Selected Then
+            For i = 0 to UBound(Processes)
+            With Processes(i)
+                If .Category = objOption.InnerText Then
+    	            Set objNewOption = document.createElement("OPTION")
+   		            objNewOption.Text = .Title  
+                    objNewOption.Value = i  
+ 	   	            lst_Macros.options.Add(objNewOption)
+                End If
+            End With
+            Next
+		End If
+	Next
+
+	Set objOption = Nothing
+    Set objNewOption = Nothing
+End Sub
+
+Sub OnChangeSelectlst_Macros()
+	Dim str_IMG_File, objOption
+
+	For Each objOption in lst_Macros.Options
+		If objOption.Selected Then
+            ProcEstRunTime = Processes(objOption.Value).Subject
+            txtLogFile.innerHTML = Processes(objOption.Value).Comment
+            txt_MacroName.innerHTML = Processes(objOption.Value).FileName
+        	str_IMG_File = Processes(objOption.Value).Layout
+            str_EXEC_File = Processes(objOption.Value).FileName
+		    Exit For
+		End If
+	Next
+
+	Set objOption = Nothing
+	img_Layout.src = str_IMG_File
+End Sub
+
+Sub OnClickButtonbtnEjecutar()
+	' StartProcessLocal.vbs
+	' Free example VBScript to start a process (not interactive)
+	' Author Guy Thomas http://computerperformance.co.uk/
+	' Version 1.8 - December 2005
+	' -------------------------------------------------------'
+	Dim objWMIService, objProcess
+	Dim strShell, objProgram', strComputer, strExe, objCalc
+    txtLogFile.innerHTML = ""
+	' Connect to WMI
+	Set objWMIService = getobject("winmgmts://" & strComputer & "/root/cimv2")
+	' Obtain the Win32_Process class of object.
+	Set objProcess = objWMIService.Get("Win32_Process")
+	Set objProgram = objProcess.Methods_("Create").InParameters.SpawnInstance_
+    objProgram.CommandLine = strExe & str_EXEC_File
+    btnPause.style.visibility="visible"
+	Set strShell = objWMIService.ExecMethod("Win32_Process", "Create", objProgram)
+    btnStart.disabled = true
+    btnBack.disabled = true
+    btnStart.style.visibility="hidden"
+    btnBack.style.visibility="hidden"
+    lst_Groups.style.visibility="hidden"
+    lst_Macros.style.visibility="hidden"
+	
+	Set strShell = Nothing
+	Set objProgram = Nothing
+	Set objProcess = Nothing
+	Set objWMIService = Nothing	
+	iTimerID = window.setInterval("Refresh", 3000) 	
+End Sub
+
+Sub StopTimer
+    window.clearInterval(iTimerID)
+End Sub
+ 
+Sub Refresh
+	Dim StillRunning
+	StillRunning = IsProcessRunning( strComputer, "xtool.exe" )
+	If Not StillRunning then 
+		Call WriteLogArea("Process finished " & strComputer)
+	    btnStart.disabled = false
+    	btnBack.disabled = False
+    	btnStart.style.visibility="visible"
+    	btnBack.style.visibility="visible"
+        btnPause.style.visibility="hidden"
+	    lst_Groups.style.visibility="visible"
+    	lst_Macros.style.visibility="visible"
+        'ProgressBar1.Value = 0
+        ProgressBar1.style.width = "0px"
+		StopTimer
+	Else
+        Call ReadFile()
+        If ProcEstRunTime <> "" Then
+            txt_MacroName.innerHTML = "Tiempo transcurrido " & PrintHrMinSec(Timer - StartTime) & ", Tiempo estimado " & PrintHrMinSec(ProcEstRunTime) & "."
+        Else
+            txt_MacroName.innerHTML = "Tiempo transcurrido " & PrintHrMinSec(Timer - StartTime) & "."
+        End If
+        ProgressBar1.style.width = CInt((Timer - StartTime)/ ProcEstRunTime*100)& "%"
+        'ProgressBar1.Value = (Timer - StartTime)/ProcEstRunTime*100 'ProgressBar1.Value + 1
+	End if
+End sub
+
+Sub WriteLogArea(strText)
+    Dim AreaText, AreaLines, AreaLine, LastLine
+    AreaText = txtLogFile.Value
+    AreaLines = Split(AreaText, vbCrLf)
+    For Each AreaLine in AreaLines
+        LastLine = AreaLine
+    Next
+    If Not LastLine = strText then
+        Call txtLogFile.insertAdjacentText("beforeEnd", vbCrLf & strText)
+    End If
+    txtLogFile.scrollTop = txtLogFile.scrollHeight
+End Sub
+
+Sub CleanLogs()
+    Dim LogFldrName, fso
+    LogFldrName = "C:\Lirix\log\" & usrFormatDateTime(Now,"yyyyMMdd-hhmmss") 
+    Set fso = CreateObject("Scripting.FileSystemObject")
+
+    If Not fso.FolderExists(LogFldrName) Then
+        Call fso.CreateFolder(LogFldrName)    
+        'Call WriteLogArea (LogFldrName & " created.")
+    End If
+
+    On error resume next
+        Call fso.MoveFile("C:\Lirix\log\*.log" , LogFldrName)
+    On error goto 0    
+End Sub
+
+Sub ReadFile
+    Const ForReading = 1
+    Dim fso, objFile, strContents
+    Set fso = CreateObject("Scripting.FileSystemObject")        
+    Set objFile = fso.OpenTextFile(LIRIX_Log_File, ForReading)
+
+    Do While Not objFile.AtEndOfStream
+        strContents = objFile.ReadLine
+        if Left(strContents, 2) = "01" Then
+            Call WriteLogArea(Replace(strContents,"0100","",1,1))
+        End If
+    Loop
+    objFile.Close
+
+    Set objFile = Nothing
+    Set fso = Nothing
+End Sub
+
+Sub OnClickButtonbtnSalir()
+  Set Groups = Nothing
+  Self.close()
+End Sub
+
+Sub OnClickButtonbtnPause()
+    Dim WshShell, intReturn
+    Set WshShell = CreateObject("WScript.Shell")
+    WshShell.Run(strBreak)
+    Set WshShell = Nothing
+End Sub
+
+</script>
+<body>
+    <!--Add your controls here-->
+	<table border="1">
+    <tr style="height: 40%;">
+	    <td align="center" style="width: 25%"><select name="lst_Groups" id="lst_Groups" size="12" width="250" onchange="OnChangeSelectlst_Groups()"></select></td>
+	    <td align="center" style="width: 25%"><select name="lst_Macros" id="lst_Macros" size="12" width="250" onchange="OnChangeSelectlst_Macros()"></select></td>
+    	<td align="center" style="width: 45%" rowspan="2"><img name="img_Layout" id="img_Layout" border="1" src="./blank.gif"></img></td>    		
+    </tr>
+    <tr style="height: 20%;">
+    	<td align="center" colspan="2"><input type="button" name="btnPause" class="btn" id="btnPause" value="Pausa" style="visibility: hidden" onclick="OnClickButtonbtnPause"></td>
+    </tr>
+    <tr style="height: 30%;">
+    	<td align="center"><input type="button" class="btn" value="Volver" id="btnBack" name="btnBack" onclick="location.href='y-Plat Aliq MainForm.hta'"></td>
+    	<td align="center"><input type="button" class="btn" value="Comenzar Proceso" id="btnStart" name="btnStart" onclick="OnClickButtonbtnEjecutar"></td>
+    	<td><textarea name="txtLogFile" id="txtLogFile" rows="10" cols="100"></textarea></td>
+    </tr> 
+    <tr style="height: 10%;"><td colspan="3">
+<div class="meter-wrap">
+<div id="ProgressBar1" class="meter-value" style="background-color: #0a0; width: 0px;">
+<div class="meter-text">
+</div>
+</div>
+</div>
+<span name="txt_MacroName" id="txt_MacroName" class="text_span"></span>
+	</td>
+    </tr>
+    </table>
+
+	<div name="INyDIA_BottomBar" class="BottomBar">&nbsp;</div>
+    <!--{{InsertControlsHere}}-Do not remove this line-->
+</body>
+</html>
